@@ -1,7 +1,10 @@
+""" Counts lines in en_tn """
+
 from pathlib import Path
+from typing import Dict
 import os
 
-BOOK_ABBREVIATIONS = [ 
+BOOK_ABBREVIATIONS = [
     "gen", "exo", "lev", "num", "deu", "jos", "jdg", "rut", "1sa",
     "2sa", "1ki", "2ki", "1ch", "2ch", "ezr", "neh", "est", "job",
     "psa", "pro", "ecc", "sng", "isa", "jer", "lam", "ezk", "dan",
@@ -11,7 +14,7 @@ BOOK_ABBREVIATIONS = [
     "2ti", "tit", "phm", "heb", "jas", "1pe", "2pe", "1jn", "2jn",
     "3jn", "jud", "rev" ]
 
-def count_lines():
+def count_lines() -> Dict[str, int]:
     book_lines = {}
     pathlist = Path(".").glob("**/*.md")
     for path in pathlist:
@@ -24,7 +27,7 @@ def count_lines():
             book_lines[topdir] = book_lines[topdir] + lines
     return book_lines
 
-def print_lines(book_lines):
+def print_lines(book_lines: Dict[str, int]) -> None:
     total = 0
     for book in BOOK_ABBREVIATIONS:
         if book not in book_lines:
@@ -33,7 +36,7 @@ def print_lines(book_lines):
         print(f"{book}: {book_lines[book]:,}")
     print(f"TOTAL: {total:,}")
 
-def main():
+def main() -> None:
     print_lines(count_lines())
 
 
