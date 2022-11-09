@@ -7,3 +7,8 @@ clean:
 .PHONY: dist
 dist:
 	python3 -m PyInstaller line-counter.py -F --onefile
+
+.PHONY: lint
+lint:
+	mypy *.py
+	pylint *.py
