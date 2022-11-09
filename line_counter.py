@@ -2,6 +2,7 @@
 
 from pathlib import Path
 from typing import Dict
+import time
 
 BOOK_ABBREVIATIONS = [
     "gen", "exo", "lev", "num", "deu", "jos", "jdg", "rut", "1sa",
@@ -15,9 +16,17 @@ BOOK_ABBREVIATIONS = [
 
 def count_lines() -> Dict[str, int]:
     """ Count lines in all md files in child directories. """
+    checkpoint = time.time()
     book_lines = {}
+    file_count = 0
     pathlist = Path(".").glob("**/*.md")
     for path in pathlist:
+        file_count += 1
+        now = time.time()
+        if now - checkpoint > 1:
+            # Notify every second
+            print(f"Processed {file_count:,} files...")
+            checkpoint = now
         topdir = path.parts[0]
         if topdir not in book_lines:
             book_lines[topdir] = 0
@@ -40,6 +49,7 @@ def print_lines(book_lines: Dict[str, int]) -> None:
 def main() -> None:
     """ Main function. """
     print_lines(count_lines())
+    input("Done!  Press Enter to exit: ")
 
 
 if __name__ == "__main__":
