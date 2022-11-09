@@ -16,6 +16,7 @@ BOOK_ABBREVIATIONS = [
 
 def count_lines() -> Dict[str, int]:
     """ Count lines in all md files in child directories. """
+    print("Counting lines in all .md files...")
     checkpoint = time.time()
     book_lines = {}
     file_count = 0
