@@ -2,7 +2,6 @@
 
 from pathlib import Path
 from typing import Dict
-import os
 
 BOOK_ABBREVIATIONS = [
     "gen", "exo", "lev", "num", "deu", "jos", "jdg", "rut", "1sa",
@@ -15,6 +14,7 @@ BOOK_ABBREVIATIONS = [
     "3jn", "jud", "rev" ]
 
 def count_lines() -> Dict[str, int]:
+    """ Count lines in all md files in child directories. """
     book_lines = {}
     pathlist = Path(".").glob("**/*.md")
     for path in pathlist:
@@ -28,6 +28,7 @@ def count_lines() -> Dict[str, int]:
     return book_lines
 
 def print_lines(book_lines: Dict[str, int]) -> None:
+    """ Print line counts for all books in the Bible. """
     total = 0
     for book in BOOK_ABBREVIATIONS:
         if book not in book_lines:
@@ -37,6 +38,7 @@ def print_lines(book_lines: Dict[str, int]) -> None:
     print(f"TOTAL: {total:,}")
 
 def main() -> None:
+    """ Main function. """
     print_lines(count_lines())
 
 
