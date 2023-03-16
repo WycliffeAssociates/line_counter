@@ -49,6 +49,7 @@ def print_lines(book_lines: Dict[str, int]) -> None:
 
 def main() -> None:
     """ Main function. """
+    print(f"Current working directory: {os.getcwd()}")
     print_lines(count_lines())
     input("Done!  Press Enter to exit: ")
 
