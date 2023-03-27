@@ -3,6 +3,7 @@
 from pathlib import Path
 from typing import Dict
 import time
+import os
 
 BOOK_ABBREVIATIONS = [
     "gen", "exo", "lev", "num", "deu", "jos", "jdg", "rut", "1sa",
